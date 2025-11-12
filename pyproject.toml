@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gitai"
+version = "0.1.0"
+description = "AI-powered Git commit message suggester"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.1.0",
+    "requests>=2.31.0",
+]
+authors = [
+    { name = "[Your Name]", email = "your.email@example.com" },
+]
+license = { text = "MIT" }
+keywords = ["git", "ai", "cli", "commit", "huggingface"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[project.scripts]
+gitai = "gitai:main"  # Entry point for CLI (update to match your script's main func)
+
+[project.urls]
+Homepage = "https://github.com/yourusername/git-commit-ai"
+Repository = "https://github.com/yourusername/git-commit-ai"
