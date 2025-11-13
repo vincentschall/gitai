@@ -23,8 +23,6 @@ def generate_commit_message(diff_text: str) -> str:
             "Missing Hugging Face token. Set it via 'gitai config set' or HF_API_TOKEN env var."
         )
 
-    # Use hf-inference provider - completely FREE with no credit usage
-    # Perfect for smaller, efficient models
     client = InferenceClient(api_key=token)
 
     # Prepare messages with a focused prompt
@@ -34,7 +32,7 @@ def generate_commit_message(diff_text: str) -> str:
             "content": (
                 "You are a git commit message generator. Generate a single, clear commit message "
                 "in imperative mood (e.g., 'Add feature' not 'Added feature'). "
-                "Keep it under 72 characters. Focus on WHAT changed, not HOW. "
+                "Keep it under 100 characters. Focus on WHAT changed, not HOW."
                 "Return ONLY the commit message, no explanations or quotes."
             )
         },
@@ -45,17 +43,12 @@ def generate_commit_message(diff_text: str) -> str:
     ]
 
     try:
-        # Using a small, efficient model that's FREE on hf-inference
-        # Options (in order of preference for free usage):
-        # 1. microsoft/Phi-4 - Small, efficient, good at following instructions
-        # 2. HuggingFaceH4/zephyr-7b-beta - Good balance of size and quality
-        # 3. google/flan-t5-base - Very small and fast
 
         response = client.chat.completions.create(
-            model="meta-llama/Llama-3.1-8B-Instruct",  # Will auto-route to cerebras
+            model="meta-llama/Llama-3.1-8B-Instruct",
             messages=messages,
-            max_tokens=100,  # Commit messages are short
-            temperature=0.3,  # Lower temperature for more focused output
+            max_tokens=200,  # Commit messages are short
+            temperature=0.5,  # Lower temperature for more focused output
         )
 
         # Extract and clean the message
@@ -68,7 +61,7 @@ def generate_commit_message(diff_text: str) -> str:
             message = message[1:-1]
 
         # Ensure it's not too long (72 chars is conventional limit)
-        if len(message) > 72:
+        if len(message) > 100:
             # Try to cut at a word boundary
             message = message[:69].rsplit(' ', 1)[0] + '...'
 
