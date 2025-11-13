@@ -17,8 +17,18 @@ def run_commit_flow():
         return
 
     click.echo(f"\nSuggested commit message:\n> {message}\n")
-    if click.confirm("Commit with this message?"):
+
+    choice = click.prompt(
+        "Commit this message? [y]es / [n]o / [r]etry",
+        type=click.Choice(['y', 'n', 'r'], case_sensitive=False)
+    )
+
+    if choice == 'y':
         commit_changes(message)
-        click.echo("✅ Committed!")
-    else:
-        click.echo("❌ Aborted.")
+        click.echo("Committed!")
+    elif choice == 'r':
+        click.echo("Retrying...")
+        run_commit_flow()
+    elif choice == 'n':
+        click.echo("Aborted...")
+
