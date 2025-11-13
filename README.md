@@ -91,7 +91,7 @@ After installation, configure your Hugging Face token:
 
 1. **Get a free Hugging Face token:**
    - Sign up at [huggingface.co](https://huggingface.co/join)
-   - Create an access token at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) (read permission is sufficient)
+   - Create an access token at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) (read permission is sufficient, or choose fine-grained and allow only "Make calls to Inference Providers")
 
 2. **Store your token:**
    ```bash
