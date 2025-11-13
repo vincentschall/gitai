@@ -28,7 +28,7 @@ def save_token(token: str):
     except Exception:
         pass  # ignore on Windows
 
-    print(f"✅ Token saved to {config_path}")
+    print(f"Token saved to {config_path}")
 
 
 def load_token() -> str | None:
@@ -52,4 +52,4 @@ def delete_token():
     config_path = get_config_path()
     if config_path.exists():
         config_path.unlink()
-        print(f"🗑️ Token deleted ({config_path})")
+        print(f"Token deleted ({config_path})")
