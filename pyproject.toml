@@ -11,20 +11,23 @@ requires-python = ">=3.8"
 dependencies = [
     "click>=8.1.0",
     "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
 ]
-authors = [
-    { name = "[Your Name]", email = "your.email@example.com" },
-]
+authors = [{ name = "Noah Klaholz" }]
 license = { text = "MIT" }
 keywords = ["git", "ai", "cli", "commit", "huggingface"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Version Control :: Git",
 ]
 
-[project.scripts]
-gitai = "gitai:main"  # Entry point for CLI (update to match your script's main func)
-
 [project.urls]
-Homepage = "https://github.com/yourusername/git-commit-ai"
-Repository = "https://github.com/yourusername/git-commit-ai"
+Homepage = "https://github.com/Noah-Klaholz/gitai"
+Repository = "https://github.com/Noah-Klaholz/gitai"
+
+[project.scripts]
+gitai = "gitai.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gitai"]

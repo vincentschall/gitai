@@ -1,3 +1,9 @@
+# Ignore local configuration files
+.gitai_config.json
+.gitai/
+.gitai_token
+config.json
+
 # IntelliJ
 .idea/
 
