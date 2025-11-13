@@ -1,6 +1,5 @@
 import subprocess
 
-
 def get_staged_diff(limit=2000):
     """Return the staged diff text (truncated if very long)."""
     try:
