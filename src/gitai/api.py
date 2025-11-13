@@ -7,9 +7,6 @@ def generate_commit_message(diff_text: str) -> str:
     """
     Generate a commit message from git diff using FREE Hugging Face Inference API.
 
-    This uses the hf-inference provider which is completely free (no credits deducted)
-    with smaller, efficient models perfect for commit message generation.
-
     Args:
         diff_text: The git diff text to generate a commit message for
 
