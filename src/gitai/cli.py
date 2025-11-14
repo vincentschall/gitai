@@ -1,6 +1,7 @@
 import click
 from .core import run_commit_flow
-from .config import save_token, delete_token, load_token, reset_config, update_config
+from .config import save_token, delete_token, load_token, reset_config, update_config, show_config
+
 
 @click.group()
 def main():
@@ -19,7 +20,7 @@ def config():
     pass
 
 @config.command("show")
-def show_config():
+def view_config():
     """Show the currently stored config."""
     show_config()
 

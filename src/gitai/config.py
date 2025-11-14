@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import textwrap
 from pathlib import Path
 from typing import Any
 
@@ -32,7 +33,7 @@ def get_default_config(preserve_token: bool = True) -> dict[str, Any]:
         "PROMPT": (
             "You are a git commit message generator. Generate a single, clear commit message "
             "in imperative mood (e.g., 'Add feature' not 'Added feature'). "
-            "Keep it under 100 characters. Focus on WHAT changed, not HOW. "
+            "Focus on WHAT changed, not HOW. "
             "Be as specific about the changes as possible within these limits."
             "Return ONLY the commit message, no explanations or quotes."
         ),
@@ -173,9 +174,8 @@ def show_config():
             displayed_value = f"{value[:8]}...{value[-4:]}" if len(value) > 12 else "***"
             print(f"  {key}: {displayed_value}")
         elif key == "PROMPT":
-            # Truncate long prompt
-            prompt_preview = value[:60] + "..." if len(value) > 60 else value
-            print(f"  {key}: {prompt_preview}")
+            wrapped = "\n      ".join(textwrap.wrap(value, width=60))
+            print(f"  {key}: {wrapped}")
         else:
             print(f"  {key}: {value}")
 
