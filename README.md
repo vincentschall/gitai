@@ -4,6 +4,8 @@ A lightweight CLI tool that automates Git commit messages using generative AI. I
 
 Built for developers tired of bland commit logs. Inspired by prompt engineering experiments in a Generative AI course—evaluates AI's effectiveness for code summarization tasks.
 
+**NOTE:** This project was built and tested _mostly_ on macOS, so there is a good chance of finding bugs on Windows!
+
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue)](https://www.python.org/)
 
