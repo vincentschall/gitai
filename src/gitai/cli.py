@@ -2,7 +2,6 @@ import click
 from .core import run_commit_flow
 from .config import save_token, delete_token, load_token, reset_config, update_config
 
-
 @click.group()
 def main():
     """GitAI – Generate smart Git commit messages with AI."""
@@ -19,15 +18,20 @@ def config():
     """Manage your GitAI configuration."""
     pass
 
+@config.command("show")
+def show_config():
+    """Show the currently stored config."""
+    show_config()
 
-@config.command("token")
+
+@config.command("set-token")
 @click.option("--token", prompt=True, hide_input=True, confirmation_prompt=True, help="Your Hugging Face API token")
 def set_token(token):
     """Save your Hugging Face API token securely."""
     save_token(token)
 
 
-@config.command("show")
+@config.command("show-token")
 def show_token():
     """Show the currently stored token (truncated)."""
     token = load_token()
@@ -48,7 +52,6 @@ def default_config():
     reset_config()
 
 
-# Option 2: Multiple options approach
 @config.command("update")
 @click.option("--temperature", type=float, help="Sampling temperature (0.0-1.0)")
 @click.option("--max-tokens", type=int, help="Maximum tokens to generate")
