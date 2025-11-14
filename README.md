@@ -62,11 +62,11 @@ Python's built-in venv module creates lightweight virtual environments with isol
 cd /path/to/gitai
 
 # Create a virtual environment
-python3 -m venv venv
+python3 -m venv gitai
 
 # Activate the virtual environment
 # On macOS/Linux:
-source venv/bin/activate
+source gitai/bin/activate
 
 # On Windows:
 venv\Scripts\activate
@@ -81,7 +81,7 @@ gitai --help
 deactivate
 ```
 
-**Note:** With a virtual environment, you'll see `(venv)` in your terminal prompt when activated. You must activate the environment each time you open a new terminal to use gitai.
+**Note:** With a virtual environment, you'll see `(gitai)` in your terminal prompt when activated. You must activate the environment each time you open a new terminal to use gitai.
 
 Then run gitai directly: `python -m gitai.cli commit`
 
