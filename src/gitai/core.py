@@ -4,7 +4,7 @@ from .api import generate_commit_message
 
 
 def run_commit_flow():
-    """Main logic for 'gitai commit'."""
+    """Main logic for 'gitai commit' """
     diff = get_staged_diff()
     if not diff:
         click.echo("No staged changes. Stage with 'git add' first.")

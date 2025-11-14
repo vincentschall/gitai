@@ -1,4 +1,4 @@
-# GitAI 
+# GitAI
 
 A lightweight CLI tool that automates Git commit messages using generative AI. Instead of typing `git commit -m "..."`, just run `gitai commit`—it analyzes your staged diff via Hugging Face's Inference API, suggests a concise, imperative-style message, and commits after confirmation.
 
