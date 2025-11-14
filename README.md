@@ -95,7 +95,7 @@ After installation, configure your Hugging Face token:
 
 2. **Store your token:**
    ```bash
-   gitai config set
+   gitai config token
    ```
    Enter your token when prompted. It's stored securely in `~/.config/gitai/config.json` (or `%APPDATA%\gitai\config.json` on Windows).
 
@@ -117,12 +117,15 @@ Commit this message? (y/n):
 
 Press `y` to commit automatically, or `n` to retry if you don't like the result.
 
-### Managing Your Token
+### Managing Your Configuration
 
 ```bash
-gitai config set      # Add or update your token
+gitai config token    # Add or update your token
 gitai config show     # Display current token (truncated for security)
 gitai config delete   # Remove stored token
+gitai config default  # Reset configuration to default values (token will not get reset)
+gitai config set      # Set configuration values using options, refer to --help
+giati --help          # Show help page
 ```
 
 ## How It Works
