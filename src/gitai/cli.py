@@ -11,7 +11,7 @@ def main():
 @main.command()
 def commit():
     """Generate an AI-powered commit message and commit the changes."""
-    run_commit_flow()
+    run_commit_flow("")
 
 
 @main.group()

@@ -3,7 +3,7 @@ from .git_utils import get_staged_diff, commit_changes
 from .api import generate_commit_message
 
 
-def run_commit_flow():
+def run_commit_flow(retry_text: str):
     """Main logic for 'gitai commit' """
     diff = get_staged_diff()
     if not diff:
@@ -11,7 +11,7 @@ def run_commit_flow():
         return
 
     try:
-        message = generate_commit_message(diff)
+        message = generate_commit_message(diff, retry_text)
     except Exception as e:
         click.echo(f"Error generating commit message: {e}")
         return
@@ -28,7 +28,7 @@ def run_commit_flow():
         click.echo("Committed!")
     elif choice == 'r':
         click.echo("Retrying...")
-        run_commit_flow()
+        run_commit_flow(message)
     elif choice == 'n':
         click.echo("Aborted...")
 

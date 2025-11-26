@@ -3,12 +3,13 @@ from huggingface_hub import InferenceClient
 from .config import load_token, load_config
 
 
-def generate_commit_message(diff_text: str) -> str:
+def generate_commit_message(diff_text: str, retry_text: str) -> str:
     """
     Generate a commit message from git diff using FREE Hugging Face Inference API.
 
     Args:
         diff_text: The git diff text to generate a commit message for
+        retry_text: If call is in a retry this contains the last proposed message, if not it is an empty String.
 
     Returns:
         The generated commit message string
@@ -31,10 +32,15 @@ def generate_commit_message(diff_text: str) -> str:
     )
 
     # Prepare messages with a focused prompt
+    # Append retry message if call is a retry (retry text is not empty)
+    if not retry_text:
+        content = config.get("PROMPT")
+    else:
+        content = config.get("PROMPT")  + "This message was too imprecise: " + retry_text + ". Try again with more accuracy."
     messages = [
         {
             "role": "system",
-            "content": config.get("PROMPT")
+            "content": content
         },
         {
             "role": "user",
@@ -48,7 +54,7 @@ def generate_commit_message(diff_text: str) -> str:
             model=config.get("MODEL"),
             messages=messages,
             max_tokens=config.get("MAX_TOKENS"),  # Commit messages are short
-            temperature=config.get("TEMPERATURE"),  # Lower temperature for more focused output
+            temperature=config.get("TEMPERATURE"),
         )
 
         # Extract and clean the message
