@@ -19,41 +19,7 @@ Built for developers tired of bland commit logs. Inspired by prompt engineering 
 
 ## Installation
 
-### Option 1: Install with pipx (Recommended for Global Use)
-
-**Best for:** Users who want `gitai` available system-wide without affecting other Python projects.
-
-pipx installs Python CLI applications in isolated environments while making them globally accessible, preventing dependency conflicts.
-
-```bash
-# Install pipx if you don't have it
-# macOS
-brew install pipx
-pipx ensurepath
-
-# Linux (Ubuntu/Debian)
-sudo apt update && sudo apt install pipx
-pipx ensurepath
-
-# Linux (Fedora)
-sudo dnf install pipx
-pipx ensurepath
-
-# Windows / Other systems
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-
-# Restart your terminal after ensurepath
-
-# Install gitai
-cd /path/to/gitai
-pipx install .
-
-# Now 'gitai' is available globally!
-gitai --help
-```
-
-### Option 2: Install in a Virtual Environment (Recommended for Development)
+### Install in a Virtual Environment (Recommended for Development)
 
 **Best for:** Developers who want to modify gitai or keep it isolated per-project.
 
@@ -85,8 +51,6 @@ deactivate
 
 **Note:** With a virtual environment, you'll see `(gitai)` in your terminal prompt when activated. You must activate the environment each time you open a new terminal to use gitai.
 
-Then run gitai directly: `python -m gitai.cli commit`
-
 ## Initial Setup
 
 After installation, configure your Hugging Face token:
@@ -113,20 +77,21 @@ gitai commit
 
 You'll see output like:
 ```bash
-Suggested message: Fix login error handling with ValueError raise
-Commit this message? (y/n): 
+Fix login error handling with ValueError raise
+Commit this message? [y]es / [n]o / [r]etry (y, n, r): y
 ```
 
-Press `y` to commit automatically, or `n` to retry if you don't like the result.
+Press `y` then enter to commit automatically, or `r` to retry if you don't like the result. You can abort the process with `n`.
 
 ### Managing Your Configuration
 
 ```bash
-gitai config token    # Add or update your token
-gitai config show     # Display current token (truncated for security)
-gitai config delete   # Remove stored token
-gitai config default  # Reset configuration to default values (token will not get reset)
-gitai config set      # Set configuration values using options, refer to --help
+gitai config default     # Reset config file to default values
+gitai config delete      # Delete the stored Hugging Face token.
+gitai config set-token   # Save your Hugging Face API token securely.
+gitai config show        # Show the currently stored config.
+gitai config show-token  # Show the currently stored token (truncated).
+gitai config update      # Update configuration values using command-line options.
 giati --help          # Show help page
 ```
 
@@ -149,12 +114,11 @@ giati --help          # Show help page
 
 ### "Command not found: gitai"
 
-- **If using pipx**: Run `pipx ensurepath` and restart your terminal
-- **If using venv**: Make sure the virtual environment is activated (`source venv/bin/activate`)
+Make sure the virtual environment is activated (`source venv/bin/activate`) and the project was initially installed with pip.
 
 ### "Missing Hugging Face token"
 
-Run `gitai config set` to configure your token. You can also set it via environment variable:
+Run `gitai config set` to configure your token (recommended). You can also set it via environment variable:
 ```bash
 export HF_API_TOKEN="your_token_here"
 ```
