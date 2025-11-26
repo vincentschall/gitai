@@ -31,16 +31,18 @@ def get_default_config(preserve_token: bool = True) -> dict[str, Any]:
     """
     config = {
         "PROMPT": (
-            "You are a git commit message generator. Generate a single, clear commit message "
-            "in imperative mood (e.g., 'Add feature' not 'Added feature'). "
+            "The following changes sent to you are the current changes to a codebase." # Context
+            "You are a git commit message generator." # Role
+            "Generate a single, clear commit message in imperative mood (e.g., 'Add feature' not 'Added feature')." # Action
             "Focus on WHAT changed, not HOW. "
             "Be as specific about the changes as possible within these limits."
-            "Return ONLY the commit message, no explanations or quotes."
+            "Return ONLY the commit message, no explanations or quotes." # Format
+            "Expect people reading the commits to know the codebase, as they are most likely developers" # Target
         ),
         "MODEL": "meta-llama/Llama-3.1-8B-Instruct",
         "PROVIDER": "auto",  # Can be "auto", "cerebras", etc.
         "MAX_TOKENS": 200,
-        "TEMPERATURE": 0.5,
+        "TEMPERATURE": 0.6,
         "MAX_CHAR_LENGTH": 100
     }
 
